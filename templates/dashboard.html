@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Dashboard</h3>
+<small>Welcome, {{session["username"]}}</small>
+<hr>
+
+<a href="/addjourney" class = "btn btn-danger">Add Journey and Photos</a>
+<hr>
+
+{% if journeys %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for journey in journeys  %}
+        <tr>
+            <th scope="row">{{journey.id}}</th>
+            <td><a href="/journey/{{journey.id}}">{{journey.title}}</a></td>
+            <td>{{journey.author}}</td>
+            <td>{{journey.created_date}}</td>
+            <td><a href="/edit/{{journey.id}}">Update</a></td>
+            <td><a href="/delete/{{journey.id}}" class ="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    
+      
+        <!--<tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr>-->
+
+    </tbody>
+  </table>
+  
+{% else %}
+<div class = "alert alert-danger">We could not find a trip added by you</div>
+  
+{% endif %}
+
+  
+{% endblock body %}

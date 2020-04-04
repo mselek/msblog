@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if journey %}
+<h4>{{journey.title}}</h4>
+<hr>
+Auothor = {{journey.author}}
+<hr>
+Date = {{journey.created_date}}
+<hr>
+{{journey.content|safe}}
+  
+{% else %}
+<div class = "alert alert-warning">
+    There is no such trip!
+</div>  
+{% endif %}
+ 
+{% endblock body %}
